@@ -1,0 +1,508 @@
+# ============================================
+# DEPLOYMENT CONFIGURATION FILES
+# ============================================
+
+# ==========================================
+# 1. BACKEND .env.example
+# ==========================================
+# Copy this to .env and fill in your values
+
+# Server Configuration
+PORT=5000
+NODE_ENV=production
+
+# Database Configuration
+DB_USER=postgres
+DB_HOST=localhost
+DB_DATABASE=ecoprompt_quest
+DB_PASSWORD=your_postgres_password_here
+DB_PORT=5432
+
+# JWT Configuration
+JWT_SECRET=your_super_secret_jwt_key_minimum_32_characters_long
+
+# OpenAI Configuration
+OPENAI_API_KEY=sk-your-openai-api-key-here
+
+# CORS Configuration (comma-separated origins)
+ALLOWED_ORIGINS=http://localhost:3000,https://yourfrontend.vercel.app
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# ==========================================
+# 2. FRONTEND .env.example
+# ==========================================
+# Copy this to .env and fill in your values
+
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_APP_NAME=EcoPrompt Quest
+REACT_APP_VERSION=1.0.0
+
+# ==========================================
+# 3. Docker Configuration
+# ==========================================
+
+# --- Dockerfile (Backend) ---
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy application files
+COPY . .
+
+# Expose port
+EXPOSE 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
+  CMD node -e "require('http').get('http://localhost:5000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Start application
+CMD ["node", "server.js"]
+
+# --- Dockerfile (Frontend) ---
+FROM node:18-alpine as build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+# --- docker-compose.yml ---
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: ecoprompt_db
+    environment:
+      POSTGRES_DB: ecoprompt_quest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database-schema.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecoprompt_backend
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=ecoprompt_quest
+      - DB_PORT=5432
+      - JWT_SECRET=${JWT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ALLOWED_ORIGINS=http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ecoprompt_frontend
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+# ==========================================
+# 4. NGINX Configuration (for Frontend)
+# ==========================================
+
+# --- nginx.conf ---
+server {
+    listen 80;
+    server_name localhost;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 10240;
+    gzip_proxied expired no-cache no-store private auth;
+    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/json;
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    # React Router support
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Static assets caching
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Health check endpoint
+    location /health {
+        access_log off;
+        return 200 "healthy\n";
+        add_header Content-Type text/plain;
+    }
+}
+
+# ==========================================
+# 5. GitHub Actions CI/CD
+# ==========================================
+
+# --- .github/workflows/deploy.yml ---
+name: Deploy EcoPrompt Quest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ecoprompt_quest_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        npm ci
+        
+    - name: Run backend tests
+      run: |
+        cd backend
+        npm test
+      env:
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ecoprompt_quest_test
+        JWT_SECRET: test_secret
+        
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm ci
+        
+    - name: Run frontend tests
+      run: |
+        cd frontend
+        npm test -- --watchAll=false
+        
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
+
+  deploy-backend:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "ecoprompt-quest-api"
+        heroku_email: ${{secrets.HEROKU_EMAIL}}
+        appdir: "backend"
+
+  deploy-frontend:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v20
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./frontend
+
+# ==========================================
+# 6. Heroku Configuration
+# ==========================================
+
+# --- Procfile (Backend) ---
+web: node server.js
+release: psql $DATABASE_URL -f database-schema.sql
+
+# --- app.json (Heroku) ---
+{
+  "name": "EcoPrompt Quest API",
+  "description": "Backend API for EcoPrompt Quest gamified learning platform",
+  "keywords": ["node", "express", "postgresql", "openai"],
+  "image": "heroku/nodejs",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ],
+  "env": {
+    "JWT_SECRET": {
+      "description": "Secret key for JWT token generation",
+      "generator": "secret"
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for GPT-4 evaluation",
+      "required": true
+    },
+    "NODE_ENV": {
+      "value": "production"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
+
+# ==========================================
+# 7. Vercel Configuration (Frontend)
+# ==========================================
+
+# --- vercel.json ---
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "REACT_APP_API_URL": "@react_app_api_url"
+  }
+}
+
+# ==========================================
+# 8. Database Backup Script
+# ==========================================
+
+#!/bin/bash
+# backup-db.sh
+
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_DIR="backups"
+BACKUP_FILE="$BACKUP_DIR/ecoprompt_quest_$DATE.sql"
+
+# Create backup directory if it doesn't exist
+mkdir -p $BACKUP_DIR
+
+# Create backup
+pg_dump -U postgres -d ecoprompt_quest > $BACKUP_FILE
+
+# Compress backup
+gzip $BACKUP_FILE
+
+# Keep only last 7 days of backups
+find $BACKUP_DIR -name "*.sql.gz" -mtime +7 -delete
+
+echo "Backup created: ${BACKUP_FILE}.gz"
+
+# ==========================================
+# 9. Health Check Endpoint (Add to Backend)
+# ==========================================
+
+# Add to your Express server.js:
+
+app.get('/health', async (req, res) => {
+  try {
+    // Check database connection
+    await pool.query('SELECT 1');
+    
+    res.status(200).json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      database: 'connected'
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'unhealthy',
+      timestamp: new Date().toISOString(),
+      error: error.message
+    });
+  }
+});
+
+# ==========================================
+# 10. Monitoring with PM2
+# ==========================================
+
+# --- ecosystem.config.js ---
+module.exports = {
+  apps: [{
+    name: 'ecoprompt-quest-api',
+    script: './server.js',
+    instances: 'max',
+    exec_mode: 'cluster',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 5000
+    },
+    error_file: './logs/err.log',
+    out_file: './logs/out.log',
+    log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+    merge_logs: true,
+    max_memory_restart: '500M',
+    autorestart: true,
+    watch: false,
+    ignore_watch: ['node_modules', 'logs'],
+    max_restarts: 10,
+    min_uptime: '10s'
+  }]
+};
+
+# Start with PM2:
+# pm2 start ecosystem.config.js
+# pm2 save
+# pm2 startup
+
+# ==========================================
+# 11. Monitoring & Logging Setup
+# ==========================================
+
+# Add Winston logger to backend:
+
+const winston = require('winston');
+
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+  ]
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple()
+  }));
+}
+
+# ==========================================
+# 12. Quick Deployment Commands
+# ==========================================
+
+# Using Docker Compose:
+docker-compose up -d
+
+# Build and deploy individually:
+# Backend to Heroku
+cd backend
+heroku login
+git init
+heroku create ecoprompt-quest-api
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config:set JWT_SECRET=your_secret OPENAI_API_KEY=your_key
+git add .
+git commit -m "Deploy backend"
+git push heroku main
+
+# Frontend to Vercel
+cd frontend
+npm install -g vercel
+vercel login
+vercel --prod
+
+# ==========================================
+# END OF DEPLOYMENT CONFIGURATION
+# ==========================================
