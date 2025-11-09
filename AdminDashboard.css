@@ -1,0 +1,524 @@
+/* ============================================
+   ADMIN DASHBOARD COMPONENT CSS
+   Complete styling for admin panel
+   ============================================ */
+
+.admin-dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ==========================================
+   ADMIN HEADER
+   ========================================== */
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #8BC34A 0%, #A5D6A7 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.admin-header .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header .page-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+/* ==========================================
+   ADMIN STATS GRID
+   ========================================== */
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.admin-stats-grid .stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-stats-grid .stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================
+   ADMIN ACTIONS
+   ========================================== */
+
+.admin-actions {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-actions .eco-button.large {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================
+   CREATE CHALLENGE FORM
+   ========================================== */
+
+.create-challenge-form {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  animation: slideDown 0.4s ease-out;
+}
+
+.create-challenge-form .section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #212121;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #8BC34A;
+}
+
+.create-challenge-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #212121;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.form-group label::after {
+  content: '*';
+  color: #F44336;
+  font-weight: 700;
+}
+
+.eco-input,
+.eco-textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #FFFFFF;
+}
+
+.eco-input:focus,
+.eco-textarea:focus {
+  outline: none;
+  border-color: #8BC34A;
+  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
+}
+
+.eco-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+select.eco-input {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23212121' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+input[type="number"].eco-input {
+  -moz-appearance: textfield;
+}
+
+input[type="number"].eco-input::-webkit-outer-spin-button,
+input[type="number"].eco-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.error-message {
+  background-color: #FFEBEE;
+  border-left: 4px solid #F44336;
+  color: #C62828;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: shake 0.4s ease-out;
+}
+
+.success-message {
+  background-color: #E8F5E9;
+  border-left: 4px solid #4CAF50;
+  color: #2E7D32;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideDown 0.4s ease-out;
+}
+
+/* ==========================================
+   CHALLENGES MANAGEMENT
+   ========================================== */
+
+.challenges-management {
+  margin-bottom: 2rem;
+}
+
+.challenges-management .section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #212121;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.challenges-table-container {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.challenges-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.challenges-table thead {
+  background: linear-gradient(135deg, #8BC34A 0%, #A5D6A7 100%);
+}
+
+.challenges-table th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.challenges-table tbody tr {
+  border-bottom: 1px solid #E0E0E0;
+  transition: background-color 0.2s ease;
+}
+
+.challenges-table tbody tr:hover {
+  background: #F5F5F5;
+}
+
+.challenges-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.challenges-table td {
+  padding: 1.25rem 1rem;
+  color: #212121;
+  vertical-align: middle;
+}
+
+.challenge-id {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #689F38;
+  font-size: 0.875rem;
+}
+
+.challenge-title {
+  font-weight: 500;
+  color: #212121;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  background: #F5F5F5;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #212121;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.difficulty-badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.difficulty-badge.easy {
+  background-color: #4CAF50;
+}
+
+.difficulty-badge.medium {
+  background-color: #FFC107;
+  color: #212121;
+}
+
+.difficulty-badge.hard {
+  background-color: #FF9800;
+}
+
+.difficulty-badge.expert {
+  background-color: #F44336;
+}
+
+.points {
+  font-weight: 700;
+  color: #8BC34A;
+  text-align: center;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-badge.active {
+  background: #4CAF50;
+  color: #FFFFFF;
+}
+
+.status-badge.inactive {
+  background: #E0E0E0;
+  color: #757575;
+}
+
+.date {
+  color: #757575;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   EMPTY STATE
+   ========================================== */
+
+.challenges-table tbody tr.empty-state td {
+  padding: 3rem;
+  text-align: center;
+  color: #757575;
+  font-size: 1rem;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 968px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .challenges-table-container {
+    overflow-x: auto;
+  }
+
+  .challenges-table {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    padding: 1rem;
+  }
+
+  .admin-header {
+    padding: 1.5rem;
+  }
+
+  .admin-header .page-title {
+    font-size: 2rem;
+  }
+
+  .admin-header .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .create-challenge-form {
+    padding: 1.5rem;
+  }
+
+  .challenges-table th,
+  .challenges-table td {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions .eco-button.large {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .admin-header .page-title {
+    font-size: 1.75rem;
+  }
+
+  .challenges-table {
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.eco-input:focus-visible,
+.eco-textarea:focus-visible,
+select.eco-input:focus-visible {
+  outline: 3px solid #8BC34A;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .admin-actions,
+  .eco-button {
+    display: none;
+  }
+
+  .challenges-table-container {
+    box-shadow: none;
+    border: 1px solid #E0E0E0;
+  }
+
+  .admin-header {
+    background: none;
+    color: #212121;
+  }
+
+  .admin-header .page-title,
+  .admin-header .page-subtitle {
+    color: #212121;
+  }
+
+  .challenges-table thead {
+    background: #F5F5F5;
+    color: #212121;
+  }
+
+  .challenges-table th {
+    color: #212121;
+  }
+}
