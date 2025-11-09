@@ -1,0 +1,832 @@
+/* ============================================
+   BADGE PROGRESS COMPONENT CSS
+   Complete styling for badge system and progression
+   ============================================ */
+
+.badge-progress-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ==========================================
+   SECTION HEADERS
+   ========================================== */
+
+.badge-progress-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212121;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.badge-progress-container h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge-progress-container h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #212121;
+  margin: 0;
+}
+
+/* ==========================================
+   CURRENT PROGRESS SECTION
+   ========================================== */
+
+.current-progress {
+  background: linear-gradient(135deg, #8BC34A 0%, #A5D6A7 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 16px rgba(139, 195, 74, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.current-progress::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.score-display {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.score-display h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   NEXT BADGE CARD
+   ========================================== */
+
+.next-badge-card {
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.next-badge-card h4 {
+  font-size: 1.25rem;
+  color: #8BC34A;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 32px;
+  background: #E0E0E0;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8BC34A 0%, #A5D6A7 100%);
+  border-radius: 16px;
+  transition: width 0.6s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.75rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 4px rgba(139, 195, 74, 0.3);
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.next-badge-card p {
+  text-align: center;
+  color: #757575;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.next-badge-card strong {
+  color: #8BC34A;
+  font-weight: 700;
+}
+
+/* ==========================================
+   EARNED BADGES SECTION
+   ========================================== */
+
+.earned-badges-section {
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  margin-bottom: 2rem;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.badge-item {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8F5E9 100%);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212121;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 80px;
+}
+
+.badge-item.earned {
+  background: linear-gradient(135deg, #8BC34A 0%, #A5D6A7 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px rgba(139, 195, 74, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.badge-item.earned:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(139, 195, 74, 0.4);
+}
+
+.badge-item.locked {
+  opacity: 0.4;
+  background: #F5F5F5;
+  color: #BDBDBD;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   SPECIAL ACHIEVEMENTS
+   ========================================== */
+
+.special-achievements {
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  margin-bottom: 2rem;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  padding: 1.5rem;
+  background: #F5F5F5;
+  border-radius: 12px;
+  border: 3px solid #E0E0E0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #E0E0E0;
+  transition: background 0.3s ease;
+}
+
+.achievement-card.earned {
+  background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 100%);
+  border-color: #8BC34A;
+  box-shadow: 0 4px 8px rgba(139, 195, 74, 0.2);
+}
+
+.achievement-card.earned::before {
+  background: linear-gradient(90deg, #8BC34A 0%, #A5D6A7 100%);
+}
+
+.achievement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+}
+
+.achievement-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.achievement-card.earned .achievement-icon {
+  animation: bounce 1s ease-in-out;
+}
+
+.achievement-card h4 {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #212121;
+}
+
+.achievement-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-bar.small {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.achievement-progress span {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #757575;
+  font-weight: 600;
+}
+
+.achievement-card.earned .achievement-progress span {
+  color: #8BC34A;
+}
+
+/* ==========================================
+   TIER PROGRESS
+   ========================================== */
+
+.tier-progress {
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.tier-card {
+  padding: 2rem;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8F5E9 100%);
+  border-radius: 12px;
+  text-align: center;
+  border: 3px solid #E0E0E0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #8BC34A 0%, #A5D6A7 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  border-color: #8BC34A;
+  box-shadow: 0 6px 12px rgba(139, 195, 74, 0.2);
+}
+
+.tier-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tier-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #8BC34A;
+}
+
+.tier-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin: 0;
+}
+
+/* Add tier-specific colors */
+.tier-card:nth-child(1) {
+  border-color: #4CAF50;
+}
+
+.tier-card:nth-child(1) h4 {
+  color: #4CAF50;
+}
+
+.tier-card:nth-child(2) {
+  border-color: #8BC34A;
+}
+
+.tier-card:nth-child(2) h4 {
+  color: #8BC34A;
+}
+
+.tier-card:nth-child(3) {
+  border-color: #FFC107;
+}
+
+.tier-card:nth-child(3) h4 {
+  color: #FFA000;
+}
+
+.tier-card:nth-child(4) {
+  border-color: #FF9800;
+}
+
+.tier-card:nth-child(4) h4 {
+  color: #F57C00;
+}
+
+/* ==========================================
+   NEW BADGE CELEBRATION (for ChallengeDetail)
+   ========================================== */
+
+.new-badge-earned {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #FFC107 0%, #FFD54F 100%);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 16px rgba(255, 193, 7, 0.4);
+  animation: bounceIn 0.6s ease-out;
+}
+
+.new-badge-earned h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.badge-showcase {
+  font-size: 3rem;
+  margin: 1.5rem 0;
+  animation: tada 1s ease-in-out;
+}
+
+.new-badge-earned p {
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  margin: 0.5rem 0 0 0;
+  font-weight: 600;
+}
+
+/* Badge progress in challenge detail */
+.badge-progress {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(139, 195, 74, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.badge-progress p {
+  margin: 0;
+  color: #212121;
+  font-size: 1rem;
+}
+
+.badge-progress strong {
+  color: #8BC34A;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* ==========================================
+   LOADING STATE
+   ========================================== */
+
+.badge-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #757575;
+  font-size: 1.125rem;
+}
+
+.badge-loading::before {
+  content: '🏅';
+  display: block;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: spin 2s linear infinite;
+}
+
+/* ==========================================
+   EMPTY STATE
+   ========================================== */
+
+.no-badges-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E8F5E9 100%);
+  border-radius: 12px;
+  border: 2px dashed #E0E0E0;
+}
+
+.no-badges-message::before {
+  content: '🌱';
+  display: block;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: sway 3s ease-in-out infinite;
+}
+
+.no-badges-message h3 {
+  font-size: 1.5rem;
+  color: #212121;
+  margin-bottom: 1rem;
+}
+
+.no-badges-message p {
+  color: #757575;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tada {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  10%, 20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 968px) {
+  .badges-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .tier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .badge-progress-container {
+    padding: 1rem;
+  }
+
+  .badge-progress-container h2 {
+    font-size: 1.75rem;
+  }
+
+  .badge-progress-container h3 {
+    font-size: 1.25rem;
+  }
+
+  .current-progress {
+    padding: 2rem 1.5rem;
+  }
+
+  .score-display h3 {
+    font-size: 2rem;
+  }
+
+  .next-badge-card {
+    padding: 1.5rem;
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .badge-item {
+    padding: 1rem;
+    font-size: 0.9rem;
+    min-height: 70px;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .new-badge-earned {
+    padding: 1.5rem;
+  }
+
+  .new-badge-earned h3 {
+    font-size: 1.5rem;
+  }
+
+  .badge-showcase {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-progress-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .score-display h3 {
+    font-size: 1.75rem;
+  }
+
+  .progress-bar {
+    height: 24px;
+  }
+
+  .badges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badge-item {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .achievement-icon {
+    font-size: 2.5rem;
+  }
+
+  .tier-card {
+    padding: 1.5rem;
+  }
+
+  .badge-showcase {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .badge-progress-container {
+    padding: 1rem;
+  }
+
+  .current-progress,
+  .earned-badges-section,
+  .special-achievements,
+  .tier-progress {
+    box-shadow: none;
+    border: 1px solid #E0E0E0;
+    page-break-inside: avoid;
+  }
+
+  .badge-item:hover,
+  .achievement-card:hover,
+  .tier-card:hover {
+    transform: none;
+  }
+
+  .new-badge-earned {
+    background: #FFE082;
+    color: #212121;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.badge-item:focus,
+.achievement-card:focus,
+.tier-card:focus {
+  outline: 3px solid #8BC34A;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .achievement-icon,
+  .badge-showcase,
+  .progress-fill::after {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   DARK MODE (Optional)
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  .earned-badges-section,
+  .special-achievements,
+  .tier-progress {
+    background: #2a2a2a;
+  }
+
+  .badge-progress-container h2,
+  .badge-progress-container h3,
+  .badge-progress-container h4 {
+    color: #FFFFFF;
+  }
+
+  .next-badge-card {
+    background: #1a1a1a;
+    color: #FFFFFF;
+  }
+
+  .next-badge-card p {
+    color: #AAAAAA;
+  }
+
+  .badge-item {
+    background: #3a3a3a;
+    color: #FFFFFF;
+  }
+
+  .achievement-card {
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+  }
+
+  .achievement-card.earned {
+    background: linear-gradient(135deg, #2a3a2a 0%, #1a4a1a 100%);
+  }
+
+  .tier-card {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a3a2a 100%);
+  }
+}
