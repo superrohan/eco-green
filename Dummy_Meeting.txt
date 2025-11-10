@@ -1,0 +1,66 @@
+// Developer
+
+[Teams Meeting Transcript]
+Alex (Dev Lead): The new payment API works fine in the sandbox, but we need to handle null pointer exceptions for failed transactions.
+
+Priya (Backend Dev): I’ve added a try-catch in the payment service, but we should log errors using our standard logger instead of printing stack traces.
+
+Rohan (QA): We caught one issue during regression — the /refund endpoint is returning 500 for invalid tokens.  
+
+Alex: Good catch, Rohan. Priya, can you patch that and redeploy before the EOD?
+
+Priya: Yes, I’ll do it right after lunch.
+
+Alex: Perfect. Once that’s done, let’s document the API changes for the next release note.
+
+
+
+// business Analyst
+
+[Teams Meeting Transcript]
+Client (Sarah): We need a dashboard that shows real-time sales across regions and product lines.
+
+BA (Meena): Understood. Should this be interactive with filters?
+
+Sarah: Yes, filters for date, product, and region would be great. Also, an export to Excel option would be helpful.
+
+BA: Noted. Do you need integration with Power BI?
+
+Sarah: Yes, Power BI integration is preferred for visualization. We’ll also need monthly reports emailed automatically.
+
+Meena: Got it — I’ll capture this in the BRD under Reporting Requirements.
+
+
+//Project Manager
+
+[Teams Meeting Transcript]
+PM (John): Sprint 8 is on track. The new feature for customer onboarding is 90% done.
+
+Dev Lead (Nisha): We’re blocked on API integration with the CRM sandbox; it’s taking longer than expected.
+
+QA (Rohan): We’ll need one extra day to complete regression once that’s unblocked.
+
+PM: Okay, let’s plan for a one-day buffer. I’ll inform stakeholders in today’s summary email.
+
+Designer (Amit): The UI feedback from the last demo has been incorporated.
+
+PM: Great. Let’s target a Friday EOD demo for the internal review.
+
+
+// Scrum Master
+
+[Teams Meeting Transcript]
+SM (Anjali): Let’s start with what went well this sprint.
+
+Ravi (Dev): Code reviews were smoother, and we completed all high-priority stories early.
+
+Sneha (QA): Automation helped a lot — fewer manual test cases.
+
+Anjali: Nice. Any areas of improvement?
+
+Ravi: The story estimation took longer in planning; maybe we can timebox it next time.
+
+Sneha: Also, let’s add a quick peer demo mid-sprint to align on UI changes.
+
+Anjali: Perfect. Let’s include these action items in the retrospective summary.
+
