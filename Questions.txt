@@ -1,0 +1,238 @@
+// Developer
+
+[
+  {
+    "challenge_id": "dev_word_001",
+    "title": "Generate REST API Documentation",
+    "description": "Use M365 Copilot in Word to create detailed REST API documentation for a Java Spring Boot service.",
+    "ideal_prompt": "You are a senior Java developer. Generate detailed REST API documentation for the following endpoints, including method, parameters, request/response examples, and status codes: [insert endpoints].",
+    "expected_result": "A well-structured API documentation with headers, code examples, and status details formatted as a Word document.",
+    "difficulty_weight": "medium",
+    "role": "developer"
+  },
+  {
+    "challenge_id": "dev_excel_002",
+    "title": "Analyze Code Metrics in Excel",
+    "description": "Use Copilot in Excel to analyze and visualize code review statistics like number of commits, bug fixes, and lines of code per developer.",
+    "ideal_prompt": "Act as a data analyst. Create a summary table and a bar chart comparing the number of commits, bugs fixed, and lines of code for each developer using this data.",
+    "expected_result": "Excel sheet with pivot summary and Copilot-generated charts visualizing key code metrics.",
+    "difficulty_weight": "medium",
+    "role": "developer"
+  },
+  {
+    "challenge_id": "dev_powerpoint_003",
+    "title": "Generate a Tech Design Deck",
+    "description": "Use Copilot in PowerPoint to create a design proposal presentation for a new microservice architecture.",
+    "ideal_prompt": "You are a solution architect. Generate a PowerPoint deck outlining microservice architecture for a payment module including system overview, components, data flow, and scalability plan.",
+    "expected_result": "A PowerPoint deck with 5–6 slides summarizing the system design, diagrams, and benefits.",
+    "difficulty_weight": "hard",
+    "role": "developer"
+  },
+  {
+    "challenge_id": "dev_teams_004",
+    "title": "Summarize Code Review Discussion",
+    "description": "Use Copilot in Teams to summarize a code review thread and highlight key action points.",
+    "ideal_prompt": "Summarize the Teams thread below into key decisions, code change requests, and assigned owners.",
+    "expected_result": "A summarized Teams message with clear bullet points on decisions and next steps.",
+    "difficulty_weight": "easy",
+    "role": "developer"
+  },
+  {
+    "challenge_id": "dev_sharepoint_005",
+    "title": "Automate Deployment Notes Upload",
+    "description": "Use Copilot in SharePoint to generate and upload automated release notes for a recent deployment.",
+    "ideal_prompt": "Generate release notes for version 2.3 of the app including new features, bug fixes, and performance improvements, and upload them to the deployment SharePoint folder.",
+    "expected_result": "A formatted document uploaded to SharePoint with version header, feature list, and release date.",
+    "difficulty_weight": "medium",
+    "role": "developer"
+  },
+  {
+    "challenge_id": "dev_outlook_006",
+    "title": "Draft a Post-Deployment Email",
+    "description": "Use Copilot in Outlook to draft a professional post-deployment summary email to stakeholders.",
+    "ideal_prompt": "Write a post-deployment update email summarizing version 2.3 changes, highlighting key fixes, and thanking QA and DevOps teams for their efforts.",
+    "expected_result": "An Outlook draft email formatted with greeting, deployment summary, acknowledgments, and next steps.",
+    "difficulty_weight": "easy",
+    "role": "developer"
+  }
+]
+
+
+
+
+//Business Analyst
+[
+  {
+    "challenge_id": "ba_word_001",
+    "title": "Draft a Business Requirements Document (BRD)",
+    "description": "Use M365 Copilot in Word to create a structured BRD based on a project idea or client input.",
+    "ideal_prompt": "You are a business analyst preparing a Business Requirements Document for a new loan application portal. Draft a BRD including sections for overview, objectives, functional requirements, non-functional requirements, and assumptions.",
+    "expected_result": "A formatted BRD with proper headings, concise descriptions, and requirement tables.",
+    "difficulty_weight": "hard",
+    "role": "business_analyst"
+  },
+  {
+    "challenge_id": "ba_excel_002",
+    "title": "Create a Risk Impact Matrix",
+    "description": "Use Copilot in Excel to generate a risk impact and probability matrix for an ongoing project.",
+    "ideal_prompt": "Generate a risk impact-probability matrix in Excel with columns for risk description, likelihood, impact, and mitigation plan. Visualize it using conditional formatting and charts.",
+    "expected_result": "An Excel sheet with a colored matrix highlighting high, medium, and low risk zones along with visual summaries.",
+    "difficulty_weight": "medium",
+    "role": "business_analyst"
+  },
+  {
+    "challenge_id": "ba_powerpoint_003",
+    "title": "Summarize Project Status into Slides",
+    "description": "Use Copilot in PowerPoint to generate a client-ready project status presentation using meeting notes.",
+    "ideal_prompt": "You are a business analyst preparing a client presentation. Generate a PowerPoint deck summarizing the last sprint’s progress, blockers, key decisions, and upcoming milestones in 5 slides.",
+    "expected_result": "A polished 5-slide PowerPoint deck with progress visuals and concise bullet points for each area.",
+    "difficulty_weight": "medium",
+    "role": "business_analyst"
+  },
+  {
+    "challenge_id": "ba_outlook_004",
+    "title": "Draft a Client Update Email",
+    "description": "Use Copilot in Outlook to draft a professional weekly update email for the client.",
+    "ideal_prompt": "Write a weekly client update email summarizing completed tasks, pending deliverables, and next week’s goals in a clear, professional tone.",
+    "expected_result": "A well-structured Outlook draft email with bullet points and closing remarks.",
+    "difficulty_weight": "easy",
+    "role": "business_analyst"
+  },
+  {
+    "challenge_id": "ba_teams_005",
+    "title": "Summarize a Meeting Transcript",
+    "description": "Use Copilot in Teams to summarize a meeting chat transcript and extract key actions and owners.",
+    "ideal_prompt": "Summarize the following Teams meeting transcript into clear action items, decision points, and task owners for quick follow-up.",
+    "expected_result": "A short summary post in Teams listing action items, decisions, and next steps.",
+    "difficulty_weight": "easy",
+    "role": "business_analyst"
+  },
+  {
+    "challenge_id": "ba_sharepoint_006",
+    "title": "Prepare a Data Insights Report",
+    "description": "Use Copilot in SharePoint to generate a report summarizing monthly analytics from Excel dashboards stored in SharePoint.",
+    "ideal_prompt": "Generate a SharePoint report summarizing sales performance, KPI deviations, and key highlights based on linked Excel dashboards. Format it for stakeholder readability.",
+    "expected_result": "A clean, SharePoint-hosted report with clear sections for KPIs, trends, and commentary.",
+    "difficulty_weight": "hard",
+    "role": "business_analyst"
+  }
+]
+
+
+// Project Manager
+[
+  {
+    "challenge_id": "pm_excel_001",
+    "title": "Generate a Project Timeline in Excel",
+    "description": "Use M365 Copilot in Excel to generate a detailed project timeline with tasks, owners, and milestones.",
+    "ideal_prompt": "You are a project manager planning a software release. Create a timeline in Excel with columns for task name, start date, end date, assigned owner, and status. Highlight overdue tasks automatically.",
+    "expected_result": "A structured Excel project plan with conditional formatting for overdue tasks and clear milestone visualization.",
+    "difficulty_weight": "easy",
+    "role": "project_manager"
+  },
+  {
+    "challenge_id": "pm_powerpoint_002",
+    "title": "Create a Stakeholder Status Presentation",
+    "description": "Use Copilot in PowerPoint to generate a weekly stakeholder update deck based on project status notes.",
+    "ideal_prompt": "Generate a PowerPoint presentation summarizing project progress, budget utilization, risks, and upcoming milestones for executive stakeholders. Keep it concise and data-driven.",
+    "expected_result": "A PowerPoint deck with 5–6 slides summarizing project health, key metrics, and next steps.",
+    "difficulty_weight": "medium",
+    "role": "project_manager"
+  },
+  {
+    "challenge_id": "pm_teams_003",
+    "title": "Summarize Team Standup Updates",
+    "description": "Use Copilot in Teams to summarize daily standup discussions and convert them into a concise report.",
+    "ideal_prompt": "Summarize the following Teams standup chat into completed tasks, blockers, and next-day goals, and format it as a short report for management.",
+    "expected_result": "A structured summary message in Teams highlighting accomplishments, issues, and next plans.",
+    "difficulty_weight": "easy",
+    "role": "project_manager"
+  },
+  {
+    "challenge_id": "pm_word_004",
+    "title": "Draft a Project Charter Document",
+    "description": "Use M365 Copilot in Word to generate a comprehensive Project Charter for a new initiative.",
+    "ideal_prompt": "Act as a senior project manager. Draft a Project Charter for an internal productivity improvement initiative, including objectives, scope, deliverables, risks, stakeholders, and governance.",
+    "expected_result": "A professional Word document with all key Project Charter sections formatted with headings and subpoints.",
+    "difficulty_weight": "hard",
+    "role": "project_manager"
+  },
+  {
+    "challenge_id": "pm_sharepoint_005",
+    "title": "Publish Weekly Project Report on SharePoint",
+    "description": "Use Copilot in SharePoint to generate and publish a project summary report using linked Excel and Teams data.",
+    "ideal_prompt": "Generate a weekly project summary report based on Teams discussions and Excel KPIs, and publish it to the SharePoint project dashboard with highlights and metrics.",
+    "expected_result": "A formatted SharePoint page showing KPIs, progress summaries, and links to related documents.",
+    "difficulty_weight": "medium",
+    "role": "project_manager"
+  },
+  {
+    "challenge_id": "pm_outlook_006",
+    "title": "Send a Project Risk Alert Email",
+    "description": "Use Copilot in Outlook to draft a project risk alert email summarizing new risks and mitigation actions.",
+    "ideal_prompt": "Draft a professional email to project stakeholders highlighting newly identified risks, their potential impact, and proposed mitigation steps. Keep tone formal and proactive.",
+    "expected_result": "A ready-to-send email draft summarizing risks with clear formatting and bullet points.",
+    "difficulty_weight": "medium",
+    "role": "project_manager"
+  }
+]
+
+
+//Scrum Master
+
+[
+  {
+    "challenge_id": "sm_teams_001",
+    "title": "Summarize Sprint Retrospective Discussion",
+    "description": "Use Copilot in Teams to summarize the sprint retrospective chat into actionable insights.",
+    "ideal_prompt": "You are a Scrum Master summarizing the sprint retrospective. Create a summary with key takeaways, improvement actions, and team acknowledgments in a positive tone.",
+    "expected_result": "A concise Teams summary message listing action items, positive highlights, and improvements.",
+    "difficulty_weight": "easy",
+    "role": "scrum_master"
+  },
+  {
+    "challenge_id": "sm_excel_002",
+    "title": "Generate a Sprint Burndown Chart",
+    "description": "Use M365 Copilot in Excel to create a burndown chart for the current sprint from task completion data.",
+    "ideal_prompt": "Generate a sprint burndown chart in Excel using task completion data. Include trend lines, sprint goal markers, and highlight potential delays.",
+    "expected_result": "An Excel burndown chart showing remaining work vs. time, with visual markers and summary insights.",
+    "difficulty_weight": "medium",
+    "role": "scrum_master"
+  },
+  {
+    "challenge_id": "sm_word_003",
+    "title": "Document Sprint Summary Report",
+    "description": "Use Copilot in Word to generate a formal sprint summary report for leadership review.",
+    "ideal_prompt": "You are a Scrum Master preparing a sprint summary report for leadership. Include sprint goals, accomplishments, pending items, risks, and next sprint focus areas.",
+    "expected_result": "A formatted Word document with sections for sprint metrics, retrospectives, and next steps.",
+    "difficulty_weight": "medium",
+    "role": "scrum_master"
+  },
+  {
+    "challenge_id": "sm_powerpoint_004",
+    "title": "Create Sprint Demo Presentation",
+    "description": "Use Copilot in PowerPoint to generate a demo-day presentation summarizing sprint outcomes and user stories delivered.",
+    "ideal_prompt": "Generate a PowerPoint deck summarizing completed user stories, demo screenshots, key metrics, and customer value delivered in this sprint.",
+    "expected_result": "A 5-slide PowerPoint presentation with visuals of completed stories and highlights of business value added.",
+    "difficulty_weight": "hard",
+    "role": "scrum_master"
+  },
+  {
+    "challenge_id": "sm_outlook_005",
+    "title": "Draft Sprint Planning Invite Email",
+    "description": "Use Copilot in Outlook to draft a sprint planning meeting invite email with agenda and preparation notes.",
+    "ideal_prompt": "Write a sprint planning meeting invite email outlining the agenda, preparation checklist, and key discussion points for the next sprint planning session.",
+    "expected_result": "A clear and concise email draft with greeting, purpose, agenda, and action points.",
+    "difficulty_weight": "easy",
+    "role": "scrum_master"
+  },
+  {
+    "challenge_id": "sm_sharepoint_006",
+    "title": "Update Team Velocity Dashboard",
+    "description": "Use Copilot in SharePoint to summarize sprint velocity trends and generate a visual dashboard update.",
+    "ideal_prompt": "Generate a SharePoint dashboard summary of the last five sprints showing velocity trends, average story points, and team improvement insights.",
+    "expected_result": "A visually rich SharePoint page displaying sprint velocity trends and team performance commentary.",
+    "difficulty_weight": "hard",
+    "role": "scrum_master"
+  }
+]
