@@ -1,0 +1,63 @@
+//Developer Code Metrics Data (dev_code_metrics.csv)
+
+Developer,Commits,Bugs Fixed,Lines of Code
+Alex,45,12,8500
+Priya,38,9,7200
+Rohan,29,14,6800
+Neha,52,7,9100
+Sam,31,10,6400
+
+
+//Business Analyst Sales Dashboard Data (ba_sales_data.csv)
+Region,Product,Month,Sales,Target
+North,Alpha,Jan,52000,50000
+South,Beta,Jan,48000,46000
+East,Gamma,Jan,61000,60000
+West,Alpha,Jan,45000,47000
+North,Beta,Feb,55000,54000
+South,Gamma,Feb,50000,49000
+East,Alpha,Feb,63000,61000
+West,Beta,Feb,47000,46000
+
+
+//Business Analyst – Risk Matrix (ba_risk_matrix.csv)
+Risk ID,Description,Likelihood,Impact,Mitigation
+R1,Delayed vendor API integration,High,High,Engage vendor early and monitor SLA
+R2,Data quality issues in legacy source,Medium,High,Implement data validation scripts
+R3,User adoption resistance,Low,Medium,Conduct training and onboarding sessions
+R4,Performance degradation post-release,Medium,Medium,Schedule load testing phase
+R5,Security vulnerability,Low,High,Perform security scans pre-UAT
+
+
+//Project Manager – Project Timeline Data (pm_timeline.csv)
+Task,Owner,Start Date,End Date,Status
+Requirement Gathering,Meena,2025-10-01,2025-10-10,Completed
+Design Phase,Amit,2025-10-11,2025-10-20,Completed
+Development,Nisha,2025-10-21,2025-11-05,In Progress
+Testing,Rohan,2025-11-06,2025-11-15,Pending
+UAT,John,2025-11-16,2025-11-22,Pending
+Go-Live,Team,2025-11-25,2025-11-25,Planned
+
+
+
+//Scrum Master – Sprint Burndown Data (sm_burndown.csv)
+Day,Story Points Remaining
+Day 1,48
+Day 2,42
+Day 3,39
+Day 4,33
+Day 5,29
+Day 6,20
+Day 7,15
+Day 8,10
+Day 9,5
+Day 10,0
+
+
+//Scrum Master – Team Velocity Data (sm_velocity.csv)
+Sprint,Story Points Committed,Story Points Completed
+Sprint 1,40,35
+Sprint 2,42,38
+Sprint 3,45,44
+Sprint 4,43,40
+Sprint 5,46,45
