@@ -1,0 +1,94 @@
+//Developer
+
+Subject: Post-Deployment Summary – Version 2.3 Successfully Released
+
+Hi Team,
+
+Version 2.3 of our Payment Gateway Service was successfully deployed last night.
+
+**Highlights:**
+- Added multi-currency support for USD and EUR
+- Improved transaction retry logic
+- Fixed refund endpoint errors
+- Enhanced monitoring logs for faster issue tracing
+
+**Acknowledgments:**
+Huge thanks to DevOps, QA, and Product teams for ensuring a smooth rollout.
+
+Next Steps:
+- Start regression tests for version 2.4 pre-release cycle
+- Update API documentation in SharePoint by EOD tomorrow
+
+Best,  
+Rohan  
+Senior Backend Engineer
+
+
+
+// Business Anlayst
+
+Subject: Weekly Project Update – Sales Insights Dashboard
+
+Dear Sarah,
+
+Here’s the progress update for this week:
+
+**Completed:**
+- Integrated Power BI visuals for real-time sales metrics
+- Added region-wise filtering and Excel export functionality
+
+**In Progress:**
+- Testing automated report delivery via email (ETA: Monday)
+- Optimizing query performance for large datasets
+
+**Next Week:**
+- Deploy dashboard for UAT review
+- Incorporate feedback from your last review
+
+Best Regards,  
+Meena  
+Business Analyst
+
+
+//Project manager
+
+Subject: Project Risk Alert – CRM API Delay
+
+Hi Stakeholders,
+
+We’ve identified a potential risk in our current sprint due to **CRM API downtime**, impacting the integration testing timeline.
+
+**Impact:** May delay end-to-end validation by 2 days.  
+**Mitigation:** Dev team is coordinating with the CRM vendor to get test access restored by tomorrow.
+
+We’re monitoring the situation closely and will share updates in tomorrow’s status call.
+
+Regards,  
+John  
+Project Manager
+
+
+//Scrum master
+
+Subject: Sprint 9 Planning – Agenda & Preparation Notes
+
+Hi Team,
+
+Please join the Sprint 9 Planning session tomorrow at 10 AM.
+
+**Agenda:**
+1. Review sprint goals and priorities
+2. Finalize user stories and estimations
+3. Identify dependencies and blockers
+4. Define Definition of Done (DoD)
+
+**Preparation:**
+- Review your backlog items before the session
+- Come prepared with story point suggestions
+
+Let’s aim for a quick and efficient planning round!  
+
+Thanks,  
+Anjali  
+Scrum Master
+
